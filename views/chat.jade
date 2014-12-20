@@ -1,0 +1,25 @@
+//   Created by harveydf on 20/12/14.
+
+doctype html
+html(ng-app='chatApp')
+   head
+      title Chat
+      script(src="js/socket.io.js")
+      script(src="js/angular.min.js")
+      script(src="js/app.js")
+   body
+      h1 Chat
+      section(ng-controller="chatController as chatCtrl")
+         form(name="messageForm", ng-submit="messageForm.$valid && sendMessage()", novalidate)
+            p
+               input(placeholder="anonymous", name="userName", ng-model="userName", required)
+            p
+               input(placeholder="Write your text here...", name="messageText", ng-model="messageText", required)
+            p
+               input(type="submit")
+
+         #chat-room
+            ul(ng-repeat="message in messages")
+               li
+                  strong --{{message.userName}}:&nbsp;
+                  | {{message.messageText}}
