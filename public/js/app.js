@@ -10,8 +10,12 @@
         return socket
     })
 
-    app.controller('chatController', function ($scope, socket) {
+    app.controller('chatController', function ($scope, $http, socket) {
         $scope.messages = [];
+
+        $http.get('/api/messages').success(function (data) {
+           $scope.messages = data;
+        });
 
         $scope.sendMessage = function() {
             var message = {
