@@ -30,7 +30,7 @@
         };
 
         socket.on('get message', function (data) {
-            $scope.messages.push(data);
+            $scope.messages.unshift(data);
             $scope.$digest();
         });
     });
