@@ -12,7 +12,7 @@ html(ng-app='chatApp')
       section(ng-controller="chatController as chatCtrl")
          form(name="messageForm", ng-submit="messageForm.$valid && sendMessage()", novalidate)
             p
-               input(placeholder="anonymous", name="userName", ng-model="userName", required)
+               input(placeholder="nickname", name="userName", ng-model="userName", required)
             p
                input(placeholder="Write your text here...", name="messageText", ng-model="messageText", required)
             p
