@@ -11,7 +11,7 @@ var conString = config.postgres.host;
 exports.findAll = function(callback){
     var messages = [];
     pg.connect(conString, function (err, client, done) {
-        var query = client.query('SELECT username, text FROM messages LIMIT 100');
+        var query = client.query('SELECT username, text FROM messages ORDER BY created_at DESC LIMIT 100');
 
         query.on('row', function(row){
             messages.push({
