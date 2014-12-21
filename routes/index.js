@@ -8,9 +8,13 @@ var express     = require('express'),
 
 router.route('/messages')
     .get(function (req, res) {
-        console.log('GET');
         message.findAll(function (data) {
             res.json(data);
+        });
+    })
+    .post(function (req, res) {
+        message.save(req.body, function () {
+            res.send('Message created!');
         });
     });
 
