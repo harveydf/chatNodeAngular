@@ -22,8 +22,11 @@
                 'userName': $scope.userName,
                 'messageText': $scope.messageText
             };
-            socket.emit('send message', message);
-            $scope.messageText = null;
+
+            $http.post('/api/messages', message).success(function () {
+                socket.emit('send message', message);
+                $scope.messageText = null;
+            });
         };
 
         socket.on('get message', function (data) {
