@@ -4,22 +4,28 @@ doctype html
 html(ng-app='chatApp')
    head
       title Chat
-      script(src="js/socket.io.js")
-      script(src="js/angular.min.js")
+      link(rel="stylesheet", href="/bower_components/bootstrap/dist/css/bootstrap.min.css")
+      link(rel="stylesheet", href="css/style.css")
+      script(src="/bower_components/socket.io-client/socket.io.js")
+      script(src="/bower_components/angular/angular.min.js")
       script(src="js/app.js")
-   body
-      h1 Chat
-      section(ng-controller="chatController as chatCtrl")
-         form(name="messageForm", ng-submit="messageForm.$valid && sendMessage()", novalidate)
-            p
-               input(placeholder="nickname", name="userName", ng-model="userName", required)
-            p
-               input(placeholder="Write your text here...", name="messageText", ng-model="messageText", required)
-            p
-               input(type="submit")
+   body(ng-controller="chatController as chatCtrl")
+      div.jumbotron
+         div.container
+            div.row
+               h1 Chat!
+               p A simple chat with Node.js, Socket.io, Express.js and Angular.js
+               form(name="messageForm", ng-submit="messageForm.$valid && sendMessage()", role="form", novalidate)
+                  div.form-group
+                     input.form-control(placeholder="nickname", name="userName", ng-model="userName", required)
+                  div.form-group
+                     div.input-group
+                        input.form-control(placeholder="Write your text here...", name="messageText", ng-model="messageText", required)
+                        span.input-group-btn
+                           button.btn.btn-info Submit
 
-         #chat-room
-            ul(ng-repeat="message in messages")
-               li
-                  strong --{{message.userName}}:&nbsp;
-                  | {{message.messageText}}
+      div.container.chat
+         div.row
+            dl.dl-horizontal
+               dt(ng-repeat-start="message in messages") {{message.userName}}:
+               dd(ng-repeat-end) {{message.messageText}}
