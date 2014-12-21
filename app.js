@@ -7,13 +7,15 @@ var express = require('express'),
     path    = require('path'),
     app     = express(),
     http    = require('http').Server(app),
-    io      = require('socket.io')(http);
+    io      = require('socket.io')(http),
+    routes  = require('./routes/index');
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(morgan('dev'));
+app.use('/api', routes);
 
 app.get('/', function (req, res) {
     res.render('chat');
@@ -23,7 +25,6 @@ io.on('connection', function(socket){
     console.log('a user connected');
     
     socket.on('send message', function (data) {
-        console.log('socket id: '+ socket.id);
         io.emit('get message', data);
     });
     
