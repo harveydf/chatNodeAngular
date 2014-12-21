@@ -1,3 +1,4 @@
 .idea
 chat.iml
 config.json
+*.db
