@@ -1,0 +1,13 @@
+dt {
+    color: #1a8fb4;
+}
+
+.chat {
+    height: 350px;
+    overflow-y: auto;
+}
+
+.jumbotron {
+    background-color: #1a8fb4;
+    color: #ffffff;
+}
